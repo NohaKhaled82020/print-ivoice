@@ -1,0 +1,7 @@
+<router-outlet></router-outlet>
+<div
+  class="overlay"
+  [class.show]="helpers.themeBlocks$ | async"
+  (click)="helpers.themeBlocks$.next(false)"
+></div>
+<app-invoice-builder></app-invoice-builder>

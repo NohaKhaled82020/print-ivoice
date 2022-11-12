@@ -1,0 +1,45 @@
+<div class="invoice">
+  <a class="btn btn-icon btn-white btn-setting" (click)="showInvoiceBlock()">
+    <i class="fa fa-cog"></i>
+  </a>
+  <div class="invoice__wrapper">
+    <div class="invoice__layout">
+      <div class="invoice__content">
+        <div class="test" #myBounds>
+          <div
+            *ngFor="let item of invoiceSelectedFields; let i = index"
+            [class]="item.name"
+            [ngStyle]="item.styling"
+            [style.top.px]="item.styling.top"
+            [style.left.px]="item.styling.left"
+            [style.width.px]="item.styling.width"
+            [style.height.px]="item.styling.height"
+            ngResizable
+            ngDraggable
+            [inBounds]="true"
+            [bounds]="myBounds"
+            (rzStop)="onResizeStop($event, item)"
+            (endOffset)="onDragEnd($event, item)"
+          >
+            <ng-container
+              *ngFor="let key of invoiceSelectedFields[i]?.selectedFields"
+            >
+              <p>{{ key }}</p>
+            </ng-container>
+            <div class="invoice-builder__actions">
+              <a class="btn btn-icon btn-sm" (click)="openStylingModal(item)">
+                <i class="fa fa-cog"></i>
+              </a>
+              <a class="btn btn-icon btn-sm" (click)="openModalInfo(item)">
+                <i class="fa fa-pen"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="invoice__save">
+      <button class="btn btn-primary" (click)="SaveInvoice()">Save</button>
+    </div>
+  </div>
+</div>

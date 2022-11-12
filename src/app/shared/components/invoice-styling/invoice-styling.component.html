@@ -1,0 +1,34 @@
+<div class="modal-body">
+  <div class="invoice-style">
+    <div>
+      <div class="d-flex align-items-center justify-between mb-5">
+        <p class="pb-0 m-0 mr-5">Section Name :</p>
+        <input type="text" [(ngModel)]="className" />
+      </div>
+    </div>
+    <div class="d-flex align-items-center justify-between mb-5">
+      <p class="pb-0 m-0 mr-5">background-color :</p>
+      <p-colorPicker
+        [(ngModel)]="styleModal['backGround-color']"
+      ></p-colorPicker>
+    </div>
+    <div class="d-flex align-items-center mb-5">
+      <p class="pb-0 m-0 mr-5">Color :</p>
+      <p-colorPicker [(ngModel)]="styleModal.color"></p-colorPicker>
+    </div>
+    <div class="d-flex align-items-center justify-between mb-5">
+      <p class="pb-0 m-0">Top :</p>
+      <input type="number" [(ngModel)]="styleModal.top" />
+    </div>
+    <div class="d-flex align-items-center justify-between mb-5">
+      <p class="pb-0 m-0">Right :</p>
+      <input type="number" [(ngModel)]="styleModal.left" />
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" (click)="save()">save</button>
+  <button class="btn btn-outline-secondary" (click)="modal.close()">
+    cancel
+  </button>
+</div>

@@ -1,0 +1,58 @@
+.invoice {
+  margin: auto;
+  padding: 20px 0;
+  background-color: #bbb;
+  img {
+    width: 300px;
+    height: auto;
+    object-fit: cover;
+  }
+}
+
+.invoice__wrapper {
+  max-width: 21cm;
+  margin: 0 auto;
+  position: relative;
+}
+.invoice__layout {
+  max-width: 21cm;
+  position: relative;
+  background-color: white;
+  &::before {
+    content: "";
+    display: table;
+    width: 100%;
+    padding-bottom: 141.42%;
+  }
+  .invoice__content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+}
+.invoice__save {
+  margin-block-start: 20px;
+  margin-block-end: 20px;
+  display: flex;
+  justify-content: center;
+  .btn {
+    width: 100%;
+  }
+}
+.test {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.invoice-builder__actions {
+  position: absolute;
+  display: flex;
+  top: -10px;
+  right: -10px;
+}
+.ng-draggable {
+  cursor: grab;
+}

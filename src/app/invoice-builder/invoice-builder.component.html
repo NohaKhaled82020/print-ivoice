@@ -1,0 +1,11 @@
+<div class="invoice-builder" [class.active]="helpers.themeBlocks$ | async">
+  <div class="invoice-builder__block" *ngFor="let block of invoice">
+    <p *ngFor="let field of block.selectedFields">{{ field }}</p>
+  </div>
+  <a
+    class="btn btn-icon invoice-builder__add btn-primary"
+    (click)="addNewBlock()"
+  >
+    <i class="fa fa-plus"></i>
+  </a>
+</div>

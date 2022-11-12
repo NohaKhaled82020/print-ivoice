@@ -1,0 +1,23 @@
+<div class="info-window">
+  <div class="info-list">
+    <p
+      *ngFor="let field of fields"
+      style="cursor: pointer"
+      [style.color]="block?.selectedFields.includes(field) ? 'blue' : ''"
+      (click)="addToSelected(field)"
+    >
+      {{ field }}
+    </p>
+  </div>
+  <div class="editor w-100">
+    <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
+    <ngx-editor [editor]="editor" [(ngModel)]="htmlContent"> </ngx-editor>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-primary" (click)="save()">save</button>
+  <button class="btn btn-outline-secondary" (click)="modal.close()">
+    cancel
+  </button>
+</div>
