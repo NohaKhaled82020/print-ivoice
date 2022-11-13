@@ -4,20 +4,25 @@
   </a>
   <div class="invoice__wrapper">
     <div class="invoice__layout">
-      <div class="invoice__content" #myBounds>
+      <!-- #myBounds -->
+      <div class="invoice__content">
         <!-- ngResizable -->
         <!-- (rzStop)="onResizeStop($event, item)" -->
+        <!-- ngDraggable
+        [inBounds]="true"
+        [bounds]="myBounds"
+        (endOffset)="onDragEnd($event, item)" -->
         <div
-          ngDraggable
-          [inBounds]="true"
-          [bounds]="myBounds"
-          (endOffset)="onDragEnd($event, item)"
+          cdkDrag
+          cdkDragBoundary=".invoice__content"
+          (cdkDragEnded)="dragEnd($event, item)"
           *ngFor="let item of invoiceSelectedFields; let i = index"
           [class]="item.name"
           [ngStyle]="{
             position: 'absolute',
             top: item?.styling.y + 'px',
-            left: item?.styling.x + 'px'
+            left: item?.styling.x + 'px',
+            cursor: 'grab'
           }"
         >
           <ng-container *ngIf="item.id !== 'table'">
@@ -66,14 +71,3 @@
     </div>
   </div>
 </div>
-
-<!-- <table style="width: 100%; height: 100%">
-  <thead>
-    <th>{{ key }}</th>
-  </thead>
-  <tbody>
-    <tr>
-      <td>nnnnnnnnnnnn</td>
-    </tr>
-  </tbody>
-</table> -->

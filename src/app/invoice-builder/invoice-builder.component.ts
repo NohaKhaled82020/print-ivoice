@@ -8,7 +8,7 @@ import { InvoiceFieldsComponent } from '../shared/components/invoice-fields/invo
   templateUrl: './invoice-builder.component.html',
 })
 export class InvoiceBuilderComponent implements OnInit {
-  start = 2;
+  start = 4;
   invoice = [
     {
       id: `1`,
@@ -29,12 +29,30 @@ export class InvoiceBuilderComponent implements OnInit {
       },
     },
     {
+      id: `2`,
+      name: `block-3`,
+      selectedFields: ['CompanyName'],
+      styling: {
+        x: 20,
+        y: 150,
+      },
+    },
+    {
+      id: `2`,
+      name: `block-4`,
+      selectedFields: ['CompanyName'],
+      styling: {
+        x: 643.0250701904297,
+        y: 150,
+      },
+    },
+    {
       id: `table`,
       name: `table-test`,
       selectedFields: ['column 1', 'column 1', 'column 3', 'column 4'],
       styling: {
-        x: 300,
-        y: 104,
+        x: 225,
+        y: 346,
       },
     },
   ];
@@ -51,8 +69,8 @@ export class InvoiceBuilderComponent implements OnInit {
       name: `block-${this.start}`,
       selectedFields: ['PhoneNumber'],
       styling: {
-        x: 200,
-        y: 170,
+        x: 332,
+        y: 173,
       },
     };
 

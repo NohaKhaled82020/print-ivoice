@@ -7,6 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ColorPickerModule } from 'primeng/colorpicker';
 import { NgxEditorModule } from 'ngx-editor';
 import { AngularDraggableModule } from 'ngx-draggable-resize';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [InvoiceFieldsComponent, InvoiceStylingComponent],
@@ -18,6 +19,7 @@ import { AngularDraggableModule } from 'ngx-draggable-resize';
     NgxEditorModule,
     ColorPickerModule,
     AngularDraggableModule,
+    DragDropModule,
   ],
   exports: [
     CommonModule,
@@ -28,6 +30,7 @@ import { AngularDraggableModule } from 'ngx-draggable-resize';
     InvoiceFieldsComponent,
     InvoiceStylingComponent,
     AngularDraggableModule,
+    DragDropModule,
   ],
 })
 export class SharedModule {}

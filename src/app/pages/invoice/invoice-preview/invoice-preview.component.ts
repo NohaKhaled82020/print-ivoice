@@ -1,3 +1,4 @@
+import { CdkDragEnd } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IPosition } from 'ngx-draggable-resize';
@@ -43,9 +44,12 @@ export class InvoicePreviewComponent implements OnInit {
     modalRef.componentInstance.block = block;
   }
 
-  onDragEnd(event: any, item: any) {
-    console.log(event);
-    // item.styling.y = item.styling.y + event.y;
+  //new
+  dragEnd(event: CdkDragEnd, item: any) {
+    item.styling.x = event.source.getFreeDragPosition().x + item.styling.x;
+    item.styling.y = event.source.getFreeDragPosition().y + item.styling.y;
+    event.source._dragRef.reset();
+    console.log(item);
   }
 
   onResizeStop(event: any, item: any) {
