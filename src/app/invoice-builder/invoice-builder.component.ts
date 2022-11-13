@@ -1,54 +1,67 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HelpersService } from 'src/app/shared/services/helpers.service';
+import { InvoiceFieldsComponent } from '../shared/components/invoice-fields/invoice-fields.component';
 
 @Component({
   selector: 'app-invoice-builder',
   templateUrl: './invoice-builder.component.html',
 })
 export class InvoiceBuilderComponent implements OnInit {
-  start = 1;
+  start = 2;
   invoice = [
     {
-      id: `${this.start}`,
-      name: `block-${this.start}`,
+      id: `1`,
+      name: `block-1`,
       selectedFields: ['CompanyName'],
       styling: {
-        'background-color': '#000',
-        color: '#fff',
-        position: 'absolute',
-        top: 20,
-        left: 20,
-        width: 220,
-        height: 200,
+        x: 20,
+        y: 24,
+      },
+    },
+    {
+      id: `2`,
+      name: `block-2`,
+      selectedFields: ['CompanyName'],
+      styling: {
+        x: 643.0250701904297,
+        y: 24,
+      },
+    },
+    {
+      id: `table`,
+      name: `table-test`,
+      selectedFields: ['column 1', 'column 1', 'column 3', 'column 4'],
+      styling: {
+        x: 300,
+        y: 104,
       },
     },
   ];
-  constructor(public helpers: HelpersService) {
+  constructor(public helpers: HelpersService, private modalService: NgbModal) {
     this.helpers.invoiceLayoutBlocks$.next(this.invoice);
   }
 
-  ngOnInit(): void {
-    console.log(this.invoice);
-  }
+  ngOnInit(): void {}
 
   addNewBlock() {
     this.start += 1;
-    this.invoice.push({
+    const item = {
       id: `${this.start}`,
       name: `block-${this.start}`,
-      selectedFields: ['CompanyName'],
+      selectedFields: ['PhoneNumber'],
       styling: {
-        'background-color': '#000',
-        color: '#fff',
-        position: 'absolute',
-        top: Math.random() * (1122.45 - 200),
-        left: Math.random() * (793.7 - 220),
-        width: 220,
-        height: 200,
+        x: 200,
+        y: 170,
       },
-    });
-    console.log(this.invoice);
+    };
 
+    this.invoice.push(item);
     this.helpers.invoiceLayoutBlocks$.next(this.invoice);
+
+    const modalRef = this.modalService.open(InvoiceFieldsComponent, {
+      windowClass: 'info-popup',
+    });
+    modalRef.componentInstance.block = item;
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { IPosition } from 'ngx-draggable-resize';
 import { tap } from 'rxjs';
 import { InvoiceFieldsComponent } from 'src/app/shared/components/invoice-fields/invoice-fields.component';
 import { InvoiceStylingComponent } from 'src/app/shared/components/invoice-styling/invoice-styling.component';
@@ -10,16 +11,6 @@ import { HelpersService } from 'src/app/shared/services/helpers.service';
   templateUrl: './invoice-preview.component.html',
 })
 export class InvoicePreviewComponent implements OnInit {
-  fields = [
-    'CompanyName',
-    'TaxIdentificationNumber',
-    'PhoneNumber',
-    'Address',
-    'Agent.ArabicName',
-    'Agent.TaxCode',
-    'Agent.Phone',
-    'Agent.FullAdress',
-  ];
   invoiceSelectedFields: any[] = [];
 
   constructor(public helpers: HelpersService, private modalService: NgbModal) {}
@@ -44,7 +35,6 @@ export class InvoicePreviewComponent implements OnInit {
       windowClass: 'info-popup',
     });
     modalRef.componentInstance.block = block;
-    modalRef.componentInstance.fields = this.fields;
   }
   openStylingModal(block: any): void {
     const modalRef = this.modalService.open(InvoiceStylingComponent, {
@@ -54,16 +44,14 @@ export class InvoicePreviewComponent implements OnInit {
   }
 
   onDragEnd(event: any, item: any) {
-    console.log('onMoveEnd', event);
-    // console.log(item);
+    console.log(event);
+    // item.styling.y = item.styling.y + event.y;
   }
-  //
 
   onResizeStop(event: any, item: any) {
     console.log('onResizeStop', event);
-    item.styling.width = event.size.width;
-    item.styling.height = event.size.height;
-    // console.log(item);
+    // item.styling.width = event.size.width;
+    // item.styling.height = event.size.height;
   }
 
   SaveInvoice() {

@@ -4,36 +4,59 @@
   </a>
   <div class="invoice__wrapper">
     <div class="invoice__layout">
-      <div class="invoice__content">
-        <div class="test" #myBounds>
-          <div
-            *ngFor="let item of invoiceSelectedFields; let i = index"
-            [class]="item.name"
-            [ngStyle]="item.styling"
-            [style.top.px]="item.styling.top"
-            [style.left.px]="item.styling.left"
-            [style.width.px]="item.styling.width"
-            [style.height.px]="item.styling.height"
-            ngResizable
-            ngDraggable
-            [inBounds]="true"
-            [bounds]="myBounds"
-            (rzStop)="onResizeStop($event, item)"
-            (endOffset)="onDragEnd($event, item)"
-          >
-            <ng-container
-              *ngFor="let key of invoiceSelectedFields[i]?.selectedFields"
+      <div class="invoice__content" #myBounds>
+        <!-- ngResizable -->
+        <!-- (rzStop)="onResizeStop($event, item)" -->
+        <div
+          ngDraggable
+          [inBounds]="true"
+          [bounds]="myBounds"
+          (endOffset)="onDragEnd($event, item)"
+          *ngFor="let item of invoiceSelectedFields; let i = index"
+          [class]="item.name"
+          [ngStyle]="{
+            position: 'absolute',
+            top: item?.styling.y + 'px',
+            left: item?.styling.x + 'px'
+          }"
+        >
+          <ng-container *ngIf="item.id !== 'table'">
+            <p *ngFor="let key of invoiceSelectedFields[i]?.selectedFields">
+              {{ key }}
+            </p>
+          </ng-container>
+          <ng-container *ngIf="item.id === 'table'">
+            <table
+              style="width: 100%; height: 100%"
+              class="table table-striped table-dark table-hover"
             >
-              <p>{{ key }}</p>
-            </ng-container>
-            <div class="invoice-builder__actions">
-              <a class="btn btn-icon btn-sm" (click)="openStylingModal(item)">
-                <i class="fa fa-cog"></i>
-              </a>
-              <a class="btn btn-icon btn-sm" (click)="openModalInfo(item)">
-                <i class="fa fa-pen"></i>
-              </a>
-            </div>
+              <thead>
+                <tr>
+                  <th
+                    *ngFor="let key of invoiceSelectedFields[i]?.selectedFields"
+                    scope="col"
+                  >
+                    {{ key }}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>test1</td>
+                  <td>test2</td>
+                  <td>test3</td>
+                  <td>test4</td>
+                </tr>
+              </tbody>
+            </table>
+          </ng-container>
+          <div class="invoice-builder__actions">
+            <a class="btn btn-icon btn-sm" (click)="openStylingModal(item)">
+              <i class="fa fa-cog"></i>
+            </a>
+            <a class="btn btn-icon btn-sm" (click)="openModalInfo(item)">
+              <i class="fa fa-pen"></i>
+            </a>
           </div>
         </div>
       </div>
@@ -43,3 +66,14 @@
     </div>
   </div>
 </div>
+
+<!-- <table style="width: 100%; height: 100%">
+  <thead>
+    <th>{{ key }}</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>nnnnnnnnnnnn</td>
+    </tr>
+  </tbody>
+</table> -->

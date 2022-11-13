@@ -11,10 +11,6 @@ export class InvoiceStylingComponent implements OnInit {
   styleModal = {
     'backGround-color': '#ffffff',
     color: '#000000',
-    top: 10,
-    left: 10,
-    width: 300,
-    height: 200,
   };
 
   constructor(public modal: NgbActiveModal) {}

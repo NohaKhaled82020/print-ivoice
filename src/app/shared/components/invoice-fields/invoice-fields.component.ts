@@ -8,7 +8,6 @@ import { Editor, toDoc, Toolbar } from 'ngx-editor';
 })
 export class InvoiceFieldsComponent implements OnInit, OnDestroy {
   @Input() block: any;
-  @Input() fields: any;
   editor!: Editor;
   toolbar: Toolbar = [
     ['bold', 'italic'],
@@ -20,6 +19,16 @@ export class InvoiceFieldsComponent implements OnInit, OnDestroy {
     ['text_color', 'background_color'],
     ['align_left', 'align_center', 'align_right', 'align_justify'],
     ['horizontal_rule', 'format_clear'],
+  ];
+  fields = [
+    'CompanyName',
+    'TaxIdentificationNumber',
+    'PhoneNumber',
+    'Address',
+    'Agent.ArabicName',
+    'Agent.TaxCode',
+    'Agent.Phone',
+    'Agent.FullAdress',
   ];
 
   htmlContentFields: any = [];
@@ -49,7 +58,6 @@ export class InvoiceFieldsComponent implements OnInit, OnDestroy {
   }
 
   save(): void {
-    this.block.selectedFields = [];
     toDoc(this.htmlContent)['content'].map((el: any) => {
       if (el?.content) {
         this.block.selectedFields = [
