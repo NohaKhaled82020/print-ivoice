@@ -13,46 +13,56 @@ export class InvoiceBuilderComponent implements OnInit {
     {
       id: `1`,
       name: `block-1`,
-      selectedFields: ['CompanyName'],
+      selectedFields: ['{%CompanyName%}'],
       styling: {
         x: 20,
         y: 24,
+        'background-color': '#ffffff',
+        color: '#000000',
       },
     },
     {
       id: `2`,
       name: `block-2`,
-      selectedFields: ['CompanyName'],
+      selectedFields: ['{%CompanyName%}'],
       styling: {
-        x: 643.0250701904297,
+        x: 580,
         y: 24,
+        'background-color': '#ffffff',
+        color: '#000000',
       },
     },
     {
       id: `2`,
       name: `block-3`,
-      selectedFields: ['CompanyName'],
+      selectedFields: ['{%CompanyName%}'],
       styling: {
         x: 20,
         y: 150,
+        'background-color': '#ffffff',
+        color: '#000000',
       },
     },
     {
       id: `2`,
       name: `block-4`,
-      selectedFields: ['CompanyName'],
+      selectedFields: ['{%CompanyName%}'],
       styling: {
-        x: 643.0250701904297,
+        x: 580,
         y: 150,
+        'background-color': '#ffffff',
+        color: '#000000',
       },
     },
     {
       id: `table`,
       name: `table-test`,
-      selectedFields: ['column 1', 'column 1', 'column 3', 'column 4'],
+      selectedFields: ['{%ItemName%}', '{%ItemCode%}', '{%ItemUnit%}'],
       styling: {
         x: 225,
         y: 346,
+        'background-color': '#ffffff',
+        color: '#000000',
       },
     },
   ];
@@ -67,10 +77,12 @@ export class InvoiceBuilderComponent implements OnInit {
     const item = {
       id: `${this.start}`,
       name: `block-${this.start}`,
-      selectedFields: ['PhoneNumber'],
+      selectedFields: [`{%PhoneNumber%}`],
       styling: {
         x: 332,
         y: 173,
+        'background-color': '#ffffff',
+        color: '#000000',
       },
     };
 

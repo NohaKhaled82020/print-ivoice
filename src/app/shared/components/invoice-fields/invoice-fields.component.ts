@@ -8,6 +8,7 @@ import { Editor, toDoc, Toolbar } from 'ngx-editor';
 })
 export class InvoiceFieldsComponent implements OnInit, OnDestroy {
   @Input() block: any;
+  @Input() tableFields: any;
   editor!: Editor;
   toolbar: Toolbar = [
     ['bold', 'italic'],
@@ -20,28 +21,34 @@ export class InvoiceFieldsComponent implements OnInit, OnDestroy {
     ['align_left', 'align_center', 'align_right', 'align_justify'],
     ['horizontal_rule', 'format_clear'],
   ];
-  fields = [
-    'CompanyName',
-    'TaxIdentificationNumber',
-    'PhoneNumber',
-    'Address',
-    'Agent.ArabicName',
-    'Agent.TaxCode',
-    'Agent.Phone',
-    'Agent.FullAdress',
-  ];
+  fields: any;
 
   htmlContentFields: any = [];
-  htmlContent = '';
+  htmlContent!: string;
 
   constructor(public modal: NgbActiveModal) {}
 
   ngOnInit(): void {
     this.editor = new Editor();
+    this.fields = [
+      '{%CompanyName%}',
+      '{%TaxIdentificationNumber%}',
+      '{%PhoneNumber%}',
+      '{%Address%}',
+      '{%AgentArabicName%}',
+      '{%AgentTaxCode%}',
+      '{%AgentPhone%}',
+      '{%AgentFullAdress%}',
+      '{%InvoiceNumber%}',
+      '{%PostedInvoiceNumber%}',
+      '{%Date%}',
+    ];
+    if (this.tableFields) {
+      this.fields = this.tableFields;
+    }
     for (const field of this.block?.selectedFields) {
       this.htmlContentFields.push(`<p>${field}</p>`);
     }
-
     this.htmlContent = this.htmlContentFields.join('');
   }
 
@@ -60,12 +67,13 @@ export class InvoiceFieldsComponent implements OnInit, OnDestroy {
   save(): void {
     toDoc(this.htmlContent)['content'].map((el: any) => {
       if (el?.content) {
-        this.block.selectedFields = [
-          ...this.block.selectedFields,
-          el.content[0].text,
-        ];
+        // this.block.selectedFields = [
+        //   ...this.block.selectedFields,
+        //   el.content[0].text,
+        // ];
       }
     });
+
     this.modal.close();
   }
   ngOnDestroy(): void {
