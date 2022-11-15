@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Editor, toDoc, Toolbar } from 'ngx-editor';
+import { Editor, Toolbar } from 'ngx-editor';
 
 @Component({
   selector: 'app-invoice-fields',
@@ -21,59 +21,51 @@ export class InvoiceFieldsComponent implements OnInit, OnDestroy {
     ['align_left', 'align_center', 'align_right', 'align_justify'],
     ['horizontal_rule', 'format_clear'],
   ];
-  fields: any;
-
-  htmlContentFields: any = [];
-  htmlContent!: string;
+  fields = [
+    '{%CompanyName%}',
+    '{%TaxIdentificationNumber%}',
+    '{%PhoneNumber%}',
+    '{%Address%}',
+    '{%AgentArabicName%}',
+    '{%AgentTaxCode%}',
+    '{%AgentPhone%}',
+    '{%AgentFullAdress%}',
+    '{%InvoiceNumber%}',
+    '{%PostedInvoiceNumber%}',
+    '{%Date%}',
+  ];
+  htmlContent = '';
 
   constructor(public modal: NgbActiveModal) {}
 
   ngOnInit(): void {
     this.editor = new Editor();
-    this.fields = [
-      '{%CompanyName%}',
-      '{%TaxIdentificationNumber%}',
-      '{%PhoneNumber%}',
-      '{%Address%}',
-      '{%AgentArabicName%}',
-      '{%AgentTaxCode%}',
-      '{%AgentPhone%}',
-      '{%AgentFullAdress%}',
-      '{%InvoiceNumber%}',
-      '{%PostedInvoiceNumber%}',
-      '{%Date%}',
-    ];
-    if (this.tableFields) {
+    // invoice fields and table fields
+    if (this?.tableFields) {
       this.fields = this.tableFields;
     }
-    for (const field of this.block?.selectedFields) {
-      this.htmlContentFields.push(`<p>${field}</p>`);
+    if (this.block?.htmlContent) {
+      this.htmlContent = this.block?.htmlContent;
+    } else {
+      for (const field of this.block?.selectedFields) {
+        this.htmlContent += `<p>${field}</p>`;
+      }
     }
-    this.htmlContent = this.htmlContentFields.join('');
   }
 
   addToSelected(field: any): void {
     if (this.block?.selectedFields.includes(field)) {
       let index = this.block?.selectedFields.indexOf(field);
       this.block?.selectedFields.splice(index, 1);
-      this.htmlContentFields.splice(index, 1);
+      this.htmlContent = this.htmlContent.replace(`<p>${field}</p>`, '');
     } else {
       this.block?.selectedFields.push(field);
-      this.htmlContentFields.push(`<p>${field}</p>`);
+      this.htmlContent += `<p>${field}</p>`;
     }
-    this.htmlContent = this.htmlContentFields.join('');
   }
 
   save(): void {
-    toDoc(this.htmlContent)['content'].map((el: any) => {
-      if (el?.content) {
-        // this.block.selectedFields = [
-        //   ...this.block.selectedFields,
-        //   el.content[0].text,
-        // ];
-      }
-    });
-
+    this.block.htmlContent = this.htmlContent;
     this.modal.close();
   }
   ngOnDestroy(): void {

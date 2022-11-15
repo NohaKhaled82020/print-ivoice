@@ -9,7 +9,7 @@ export class InvoiceStylingComponent implements OnInit {
   @Input() block: any;
   className = '';
   styleModal = {
-    'background-color': '#ffffff',
+    backgroundColor: '#ffffff',
     color: '#000000',
   };
 

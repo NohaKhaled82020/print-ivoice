@@ -11,7 +11,7 @@ import { HelpersService } from 'src/app/shared/services/helpers.service';
   templateUrl: './invoice-preview.component.html',
 })
 export class InvoicePreviewComponent implements OnInit {
-  invoiceSelectedFields: any[] = [];
+  invoiceSelectedFields!: any[];
   tableFields = [
     '{%ItemCode%}',
     '{%ItemName%}',
@@ -60,12 +60,11 @@ export class InvoicePreviewComponent implements OnInit {
   }
 
   onResizeStop(event: any, item: any) {
-    console.log('onResizeStop', event);
     item.styling.width = event.size.width;
   }
 
   SaveInvoice() {
     console.log(this.invoiceSelectedFields);
-    // this.helpers.setItemToLocalStorage('invoice', this.invoiceSelectedFields);
+    this.helpers.setItemToLocalStorage('invoice', this.invoiceSelectedFields);
   }
 }

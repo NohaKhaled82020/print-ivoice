@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { tap } from 'rxjs';
 import { HelpersService } from 'src/app/shared/services/helpers.service';
 import { InvoiceFieldsComponent } from '../shared/components/invoice-fields/invoice-fields.component';
 
@@ -17,9 +18,10 @@ export class InvoiceBuilderComponent implements OnInit {
       styling: {
         x: 20,
         y: 24,
-        'background-color': '#ffffff',
+        backgroundColor: '#ffffff',
         color: '#000000',
       },
+      htmlContent: '',
     },
     {
       id: `2`,
@@ -28,9 +30,10 @@ export class InvoiceBuilderComponent implements OnInit {
       styling: {
         x: 580,
         y: 24,
-        'background-color': '#ffffff',
+        backgroundColor: '#ffffff',
         color: '#000000',
       },
+      htmlContent: '',
     },
     {
       id: `2`,
@@ -39,9 +42,10 @@ export class InvoiceBuilderComponent implements OnInit {
       styling: {
         x: 20,
         y: 150,
-        'background-color': '#ffffff',
+        backgroundColor: '#ffffff',
         color: '#000000',
       },
+      htmlContent: '',
     },
     {
       id: `2`,
@@ -50,9 +54,10 @@ export class InvoiceBuilderComponent implements OnInit {
       styling: {
         x: 580,
         y: 150,
-        'background-color': '#ffffff',
+        backgroundColor: '#ffffff',
         color: '#000000',
       },
+      htmlContent: '',
     },
     {
       id: `table`,
@@ -61,12 +66,17 @@ export class InvoiceBuilderComponent implements OnInit {
       styling: {
         x: 225,
         y: 346,
-        'background-color': '#ffffff',
+        backgroundColor: '#ffffff',
         color: '#000000',
       },
+      htmlContent: '',
     },
   ];
   constructor(public helpers: HelpersService, private modalService: NgbModal) {
+    // check if invoice found in local storage same for api
+    if (this.helpers.getItemFromLocalStorage('invoice')) {
+      this.invoice = this.helpers.getItemFromLocalStorage('invoice');
+    }
     this.helpers.invoiceLayoutBlocks$.next(this.invoice);
   }
 
@@ -81,13 +91,14 @@ export class InvoiceBuilderComponent implements OnInit {
       styling: {
         x: 332,
         y: 173,
-        'background-color': '#ffffff',
+        backgroundColor: '#ffffff',
         color: '#000000',
       },
+      htmlContent: '',
     };
-
     this.invoice.push(item);
     this.helpers.invoiceLayoutBlocks$.next(this.invoice);
+    // this.helpers.invoiceAddNewBlock$.next(item);
 
     const modalRef = this.modalService.open(InvoiceFieldsComponent, {
       windowClass: 'info-popup',

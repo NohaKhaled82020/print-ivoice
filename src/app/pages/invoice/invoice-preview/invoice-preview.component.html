@@ -16,6 +16,7 @@
         (endOffset)="onDragEnd($event, item)" -->
         <div
           ngResizable
+          [rzHandles]="'e,w'"
           (rzStop)="onResizeStop($event, item)"
           cdkDrag
           cdkDragBoundary=".invoice__content"
@@ -25,10 +26,11 @@
           [ngStyle]="{
             padding: 20 + 'px',
             position: 'absolute',
-            top: item?.styling.y + 'px',
-            left: item?.styling.x + 'px',
-            'background-color': item?.styling['background-color'],
-            color: item?.styling.color,
+            top: item?.styling?.y + 'px',
+            left: item?.styling?.x + 'px',
+            'background-color': item?.styling?.backgroundColor,
+            color: item?.styling?.color,
+            width: item?.styling?.width ? item?.styling?.width + 'px' : '',
             cursor: 'grab'
           }"
         >
