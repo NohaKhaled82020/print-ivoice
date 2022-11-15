@@ -4,19 +4,19 @@ import { InvoicePreviewComponent } from './invoice-preview/invoice-preview.compo
 import { InvoiceTemplateComponent } from './invoice-template/invoice-template.component';
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   component: InvoicePreviewComponent,
-  // },
+  {
+    path: '',
+    component: InvoicePreviewComponent,
+  },
   // {
   //   path: 'invoice-template',
   //   component: InvoiceTemplateComponent,
   // },
   //ttttttttttttttttttttttttest
-  {
-    path: '',
-    component: InvoiceTemplateComponent,
-  },
+  // {
+  //   path: '',
+  //   component: InvoiceTemplateComponent,
+  // },
 ];
 
 @NgModule({

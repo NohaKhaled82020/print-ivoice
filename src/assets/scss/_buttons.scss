@@ -57,6 +57,12 @@
       margin-inline-start: auto;
       margin-inline-end: 50px;
     }
+    &.btn-red {
+      background-color: #dc3545;
+      i {
+        color: white;
+      }
+    }
   }
 }
 .btns-group {

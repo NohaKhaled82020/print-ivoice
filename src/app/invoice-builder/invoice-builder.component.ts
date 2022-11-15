@@ -103,4 +103,9 @@ export class InvoiceBuilderComponent implements OnInit {
     });
     modalRef.componentInstance.block = item;
   }
+  removeBlock(block: any) {
+    let index = this.invoice.indexOf(block);
+    this.invoice.splice(index, 1);
+    this.helpers.invoiceLayoutBlocks$.next(this.invoice);
+  }
 }

@@ -40,6 +40,24 @@
   padding: 20px;
   position: relative;
 }
+.invoice-builder__actions {
+  position: absolute;
+  display: flex;
+  top: -10px;
+  right: -10px;
+  &.delete-option {
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    opacity: 0;
+    transition: 0.5s ease;
+  }
+}
+.invoice-builder__block:hover .invoice-builder__actions {
+  &.delete-option {
+    opacity: 1;
+  }
+}
 
 .invoice-builder__add {
   position: fixed;
