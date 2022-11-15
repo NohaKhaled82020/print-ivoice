@@ -21,7 +21,7 @@ export class InvoiceBuilderComponent implements OnInit {
         backgroundColor: '#ffffff',
         color: '#000000',
       },
-      htmlContent: '',
+      htmlContent: '<p>{%CompanyName%}</p>',
     },
     {
       id: `2`,
@@ -33,10 +33,10 @@ export class InvoiceBuilderComponent implements OnInit {
         backgroundColor: '#ffffff',
         color: '#000000',
       },
-      htmlContent: '',
+      htmlContent: '<p>{%CompanyName%}</p>',
     },
     {
-      id: `2`,
+      id: `3`,
       name: `block-3`,
       selectedFields: ['{%CompanyName%}'],
       styling: {
@@ -45,10 +45,10 @@ export class InvoiceBuilderComponent implements OnInit {
         backgroundColor: '#ffffff',
         color: '#000000',
       },
-      htmlContent: '',
+      htmlContent: '<p>{%CompanyName%}</p>',
     },
     {
-      id: `2`,
+      id: `4`,
       name: `block-4`,
       selectedFields: ['{%CompanyName%}'],
       styling: {
@@ -57,7 +57,7 @@ export class InvoiceBuilderComponent implements OnInit {
         backgroundColor: '#ffffff',
         color: '#000000',
       },
-      htmlContent: '',
+      htmlContent: '<p>{%CompanyName%}</p>',
     },
     {
       id: `table`,
@@ -69,7 +69,7 @@ export class InvoiceBuilderComponent implements OnInit {
         backgroundColor: '#ffffff',
         color: '#000000',
       },
-      htmlContent: '',
+      htmlContent: '<p>{%ItemName%}</p><p>{%ItemCode%}</p><p>{%ItemUnit%}</p>',
     },
   ];
   constructor(public helpers: HelpersService, private modalService: NgbModal) {
@@ -94,12 +94,10 @@ export class InvoiceBuilderComponent implements OnInit {
         backgroundColor: '#ffffff',
         color: '#000000',
       },
-      htmlContent: '',
+      htmlContent: '<p>{%PhoneNumber%}</p>',
     };
     this.invoice.push(item);
     this.helpers.invoiceLayoutBlocks$.next(this.invoice);
-    // this.helpers.invoiceAddNewBlock$.next(item);
-
     const modalRef = this.modalService.open(InvoiceFieldsComponent, {
       windowClass: 'info-popup',
     });

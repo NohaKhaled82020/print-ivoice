@@ -8,9 +8,18 @@ import { ColorPickerModule } from 'primeng/colorpicker';
 import { NgxEditorModule } from 'ngx-editor';
 import { AngularDraggableModule } from 'ngx-draggable-resize';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { SafeHtmlPipe } from './pipes/safe-html.pipe';
+import { ReplaceKeyPipe } from './pipes/replace-key.pipe';
+import { InvoiceLineValue } from './pipes/invoiceLine-value.pipe';
 
 @NgModule({
-  declarations: [InvoiceFieldsComponent, InvoiceStylingComponent],
+  declarations: [
+    InvoiceFieldsComponent,
+    InvoiceStylingComponent,
+    ReplaceKeyPipe,
+    SafeHtmlPipe,
+    InvoiceLineValue,
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -31,6 +40,9 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     InvoiceStylingComponent,
     AngularDraggableModule,
     DragDropModule,
+    ReplaceKeyPipe,
+    SafeHtmlPipe,
+    InvoiceLineValue,
   ],
 })
 export class SharedModule {}
