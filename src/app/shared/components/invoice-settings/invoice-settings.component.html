@@ -1,19 +1,19 @@
 <div class="modal-body">
-  <form [formGroup]="invoiceStylingForm">
+  <form [formGroup]="invoiceSettingForm">
     <div class="mb-3 form-group">
-      <p class="pb-0 m-0 mr-5">Section Name :</p>
+      <p class="pb-0 m-0 mr-5">Theme Name :</p>
       <input type="text" class="form-control" formControlName="name" />
       <div
         class="invalid-feedback"
         style="display: block"
         *ngIf="
-          invoiceStylingForm.get('name')?.touched &&
-          invoiceStylingForm.get('name')?.invalid
+          invoiceSettingForm.get('name')?.touched &&
+          invoiceSettingForm.get('name')?.invalid
         "
       >
         <p
           style="color: red"
-          *ngIf="invoiceStylingForm.get('name')?.errors?.['required']"
+          *ngIf="invoiceSettingForm.get('name')?.errors?.['required']"
         >
           name required
         </p>
@@ -24,10 +24,6 @@
         <p class="pb-0 m-0 mr-5">background-color :</p>
         <p-colorPicker formControlName="backgroundColor"></p-colorPicker>
       </div>
-      <div>
-        <p class="pb-0 m-0 mr-5">Color :</p>
-        <p-colorPicker formControlName="color"></p-colorPicker>
-      </div>
     </div>
   </form>
 </div>
@@ -35,7 +31,7 @@
   <button
     type="button"
     class="btn btn-primary"
-    [disabled]="!invoiceStylingForm.valid"
+    [disabled]="!invoiceSettingForm.valid"
     (click)="submit()"
   >
     Save

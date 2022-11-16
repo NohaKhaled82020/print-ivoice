@@ -3,10 +3,10 @@
     <div class="invoice__layout">
       <div class="invoice__content">
         <div
-          *ngFor="let item of invoiceTemplate; let i = index"
+          *ngFor="let item of invoiceTemplate.invoiceBlocks; let i = index"
           [class]="item.name"
           [ngStyle]="{
-            padding: 20 + 'px',
+            padding: 10 + 'px',
             position: 'absolute',
             top: item?.styling?.y + 'px',
             left: item?.styling?.x + 'px',
@@ -19,7 +19,7 @@
           <ng-container *ngIf="item.id !== 'table'">
             <div
               [innerHtml]="
-                invoiceTemplate[i].htmlContent
+                invoiceTemplate.invoiceBlocks[i].htmlContent
                   | replaceKey: invoiceData
                   | safeHtml
               "
@@ -33,7 +33,10 @@
               <thead>
                 <tr>
                   <th
-                    *ngFor="let key of invoiceTemplate[i]?.selectedFields"
+                    *ngFor="
+                      let key of invoiceTemplate.invoiceBlocks[i]
+                        ?.selectedFields
+                    "
                     scope="col"
                   >
                     {{ key | invoiceLineValue }}
@@ -42,7 +45,12 @@
               </thead>
               <tbody>
                 <tr *ngFor="let row of invoiceData.invoiceLines">
-                  <td *ngFor="let key of invoiceTemplate[i]?.selectedFields">
+                  <td
+                    *ngFor="
+                      let key of invoiceTemplate.invoiceBlocks[i]
+                        ?.selectedFields
+                    "
+                  >
                     {{ key | invoiceLineValue: row }}
                   </td>
                 </tr>

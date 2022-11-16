@@ -11,6 +11,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 import { ReplaceKeyPipe } from './pipes/replace-key.pipe';
 import { InvoiceLineValue } from './pipes/invoiceLine-value.pipe';
+import { InvoiceSettingsComponent } from './components/invoice-settings/invoice-settings.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { InvoiceLineValue } from './pipes/invoiceLine-value.pipe';
     ReplaceKeyPipe,
     SafeHtmlPipe,
     InvoiceLineValue,
+    InvoiceSettingsComponent,
   ],
   imports: [
     CommonModule,
@@ -43,6 +45,7 @@ import { InvoiceLineValue } from './pipes/invoiceLine-value.pipe';
     ReplaceKeyPipe,
     SafeHtmlPipe,
     InvoiceLineValue,
+    InvoiceSettingsComponent,
   ],
 })
 export class SharedModule {}

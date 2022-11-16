@@ -2,10 +2,15 @@
   <a class="btn btn-icon btn-white btn-setting" (click)="showInvoiceBlock()">
     <i class="fa fa-cog"></i>
   </a>
+  <a
+    class="btn btn-icon btn-white btn-setting mt-3"
+    (click)="invoiceSettings()"
+  >
+    <i class="fa fa-pen-to-square"></i>
+  </a>
   <div class="invoice__wrapper">
     <div class="invoice__layout">
       <div class="invoice__content">
-        <!--[rzMaxWidth]="790" -->
         <div
           ngResizable
           [rzHandles]="'e,w'"
@@ -13,10 +18,10 @@
           cdkDrag
           cdkDragBoundary=".invoice__content"
           (cdkDragEnded)="dragEnd($event, item)"
-          *ngFor="let item of invoiceSelectedFields; let i = index"
+          *ngFor="let item of invoice?.invoiceBlocks; let i = index"
           [class]="item.name"
           [ngStyle]="{
-            padding: 20 + 'px',
+            padding: 10 + 'px',
             position: 'absolute',
             top: item?.styling?.y + 'px',
             left: item?.styling?.x + 'px',
@@ -27,7 +32,7 @@
           }"
         >
           <ng-container *ngIf="item.id !== 'table'">
-            <p *ngFor="let key of invoiceSelectedFields[i]?.selectedFields">
+            <p *ngFor="let key of invoice?.invoiceBlocks[i]?.selectedFields">
               {{ key }}
             </p>
           </ng-container>
@@ -39,7 +44,9 @@
               <thead>
                 <tr>
                   <th
-                    *ngFor="let key of invoiceSelectedFields[i]?.selectedFields"
+                    *ngFor="
+                      let key of invoice?.invoiceBlocks[i]?.selectedFields
+                    "
                     scope="col"
                   >
                     {{ key }}
@@ -49,7 +56,9 @@
               <tbody>
                 <tr>
                   <td
-                    *ngFor="let key of invoiceSelectedFields[i]?.selectedFields"
+                    *ngFor="
+                      let key of invoice?.invoiceBlocks[i]?.selectedFields
+                    "
                   >
                     test1
                   </td>

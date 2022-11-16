@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { tap } from 'rxjs';
 import { InvoiceFieldsComponent } from 'src/app/shared/components/invoice-fields/invoice-fields.component';
+import { InvoiceSettingsComponent } from 'src/app/shared/components/invoice-settings/invoice-settings.component';
 import { InvoiceStylingComponent } from 'src/app/shared/components/invoice-styling/invoice-styling.component';
 import { HelpersService } from 'src/app/shared/services/helpers.service';
 
@@ -11,7 +12,15 @@ import { HelpersService } from 'src/app/shared/services/helpers.service';
   templateUrl: './invoice-preview.component.html',
 })
 export class InvoicePreviewComponent implements OnInit {
-  invoiceSelectedFields!: any[];
+  invoice: any = {
+    id: 'theme-1',
+    name: 'theme-1',
+    imageUrl: '',
+    styling: {
+      backgroundColor: '#ffffff',
+    },
+    // invoiceBlocks: [],
+  };
   tableFields = [
     '{%ItemCode%}',
     '{%ItemName%}',
@@ -27,7 +36,7 @@ export class InvoicePreviewComponent implements OnInit {
       .pipe(
         tap((res) => {
           if (res) {
-            this.invoiceSelectedFields = res;
+            this.invoice.invoiceBlocks = res;
           }
         })
       )
@@ -63,8 +72,12 @@ export class InvoicePreviewComponent implements OnInit {
     item.styling.width = event.size.width;
   }
 
+  invoiceSettings() {
+    const modalRef = this.modalService.open(InvoiceSettingsComponent);
+    modalRef.componentInstance.invoice = this.invoice;
+  }
+
   SaveInvoice() {
-    console.log(this.invoiceSelectedFields);
-    this.helpers.setItemToLocalStorage('invoice', this.invoiceSelectedFields);
+    this.helpers.setItemToLocalStorage('invoice', this.invoice);
   }
 }

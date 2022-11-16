@@ -8,15 +8,10 @@ const routes: Routes = [
     path: '',
     component: InvoicePreviewComponent,
   },
-  // {
-  //   path: 'invoice-template',
-  //   component: InvoiceTemplateComponent,
-  // },
-  //ttttttttttttttttttttttttest
-  // {
-  //   path: '',
-  //   component: InvoiceTemplateComponent,
-  // },
+  {
+    path: 'invoice-template',
+    component: InvoiceTemplateComponent,
+  },
 ];
 
 @NgModule({

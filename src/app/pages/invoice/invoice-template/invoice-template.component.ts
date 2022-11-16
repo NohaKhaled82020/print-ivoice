@@ -7,6 +7,7 @@ import { HelpersService } from 'src/app/shared/services/helpers.service';
 })
 export class InvoiceTemplateComponent implements OnInit {
   invoiceData: any = {
+    Logo: '../../../../assets/logo.png',
     CompanyName: 'Ebtekar Company',
     TaxIdentificationNumber: '123456',
     PhoneNumber: '0101010101010',

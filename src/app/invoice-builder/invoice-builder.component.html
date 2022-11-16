@@ -1,5 +1,5 @@
 <div class="invoice-builder" [class.active]="helpers.themeBlocks$ | async">
-  <div class="invoice-builder__block" *ngFor="let block of invoice">
+  <div class="invoice-builder__block" *ngFor="let block of invoiceBlocks">
     <p *ngFor="let field of block.selectedFields">{{ field }}</p>
     <div
       class="invoice-builder__actions delete-option"

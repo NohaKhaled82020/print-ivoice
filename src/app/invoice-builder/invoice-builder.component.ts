@@ -10,7 +10,7 @@ import { InvoiceFieldsComponent } from '../shared/components/invoice-fields/invo
 })
 export class InvoiceBuilderComponent implements OnInit {
   start = 4;
-  invoice = [
+  invoiceBlocks = [
     {
       id: `1`,
       name: `block-1`,
@@ -75,9 +75,10 @@ export class InvoiceBuilderComponent implements OnInit {
   constructor(public helpers: HelpersService, private modalService: NgbModal) {
     // check if invoice found in local storage same for api
     if (this.helpers.getItemFromLocalStorage('invoice')) {
-      this.invoice = this.helpers.getItemFromLocalStorage('invoice');
+      this.invoiceBlocks =
+        this.helpers.getItemFromLocalStorage('invoice').invoiceBlocks;
     }
-    this.helpers.invoiceLayoutBlocks$.next(this.invoice);
+    this.helpers.invoiceLayoutBlocks$.next(this.invoiceBlocks);
   }
 
   ngOnInit(): void {}
@@ -96,16 +97,17 @@ export class InvoiceBuilderComponent implements OnInit {
       },
       htmlContent: '<p>{%PhoneNumber%}</p>',
     };
-    this.invoice.push(item);
-    this.helpers.invoiceLayoutBlocks$.next(this.invoice);
+    this.invoiceBlocks.push(item);
+    this.helpers.invoiceLayoutBlocks$.next(this.invoiceBlocks);
     const modalRef = this.modalService.open(InvoiceFieldsComponent, {
       windowClass: 'info-popup',
     });
     modalRef.componentInstance.block = item;
   }
+
   removeBlock(block: any) {
-    let index = this.invoice.indexOf(block);
-    this.invoice.splice(index, 1);
-    this.helpers.invoiceLayoutBlocks$.next(this.invoice);
+    let index = this.invoiceBlocks.indexOf(block);
+    this.invoiceBlocks.splice(index, 1);
+    this.helpers.invoiceLayoutBlocks$.next(this.invoiceBlocks);
   }
 }

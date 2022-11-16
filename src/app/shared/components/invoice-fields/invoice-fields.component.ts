@@ -22,6 +22,7 @@ export class InvoiceFieldsComponent implements OnInit, OnDestroy {
     ['horizontal_rule', 'format_clear'],
   ];
   fields = [
+    '{%Logo%}',
     '{%CompanyName%}',
     '{%TaxIdentificationNumber%}',
     '{%PhoneNumber%}',
