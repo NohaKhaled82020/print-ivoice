@@ -22,7 +22,6 @@ export class InvoiceFieldsComponent implements OnInit, OnDestroy {
     ['horizontal_rule', 'format_clear'],
   ];
   fields = [
-    '{%Logo%}',
     '{%CompanyName%}',
     '{%TaxIdentificationNumber%}',
     '{%PhoneNumber%}',
@@ -41,7 +40,6 @@ export class InvoiceFieldsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.editor = new Editor();
-    // invoice fields and table fields
     if (this?.tableFields) {
       this.fields = this.tableFields;
     }
@@ -62,6 +60,18 @@ export class InvoiceFieldsComponent implements OnInit, OnDestroy {
     } else {
       this.block?.selectedFields.push(field);
       this.htmlContent += `<p>${field}</p>`;
+    }
+  }
+  changeInEditor(event: any): void {
+    let newSelected: any = [];
+    if (event) {
+      let arr = event.split('%');
+      for (let i = 0; i < arr.length; i++) {
+        if (!/<[^>]*>/g.test(arr[i])) {
+          newSelected = [...newSelected, `{%${arr[i]}%}`];
+          this.block.selectedFields = newSelected;
+        }
+      }
     }
   }
 

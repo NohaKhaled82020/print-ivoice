@@ -28,13 +28,16 @@
             'background-color': item?.styling?.backgroundColor,
             color: item?.styling?.color,
             width: item?.styling?.width ? item?.styling?.width + 'px' : '',
-            cursor: 'grab'
+            cursor: 'grab',
+            border: '1px dashed #009ef7'
           }"
         >
           <ng-container *ngIf="item.id !== 'table'">
-            <p *ngFor="let key of invoice?.invoiceBlocks[i]?.selectedFields">
-              {{ key }}
-            </p>
+            <div
+              [innerHtml]="
+                invoice.invoiceBlocks[i].htmlContent | replaceKey | safeHtml
+              "
+            ></div>
           </ng-container>
           <ng-container *ngIf="item.id === 'table'">
             <table
