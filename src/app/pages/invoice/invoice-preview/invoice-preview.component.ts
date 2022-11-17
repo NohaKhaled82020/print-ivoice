@@ -1,5 +1,6 @@
 import { CdkDragEnd } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { tap } from 'rxjs';
 import { InvoiceFieldsComponent } from 'src/app/shared/components/invoice-fields/invoice-fields.component';
@@ -12,15 +13,7 @@ import { HelpersService } from 'src/app/shared/services/helpers.service';
   templateUrl: './invoice-preview.component.html',
 })
 export class InvoicePreviewComponent implements OnInit {
-  invoice: any = {
-    id: 'theme-1',
-    name: 'theme-1',
-    imageUrl: '',
-    styling: {
-      backgroundColor: '#ffffff',
-    },
-    // invoiceBlocks: [],
-  };
+  invoice: any;
   tableFields = [
     '{%ItemCode%}',
     '{%ItemName%}',
@@ -29,15 +22,17 @@ export class InvoicePreviewComponent implements OnInit {
     '{%Quantity%}',
   ];
 
-  constructor(public helpers: HelpersService, private modalService: NgbModal) {}
+  constructor(
+    public helpers: HelpersService,
+    private modalService: NgbModal,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.helpers.invoiceLayoutBlocks$
+    this.helpers.invoiceUI$
       .pipe(
-        tap((res) => {
-          if (res) {
-            this.invoice.invoiceBlocks = res;
-          }
+        tap((res: any) => {
+          this.invoice = res;
         })
       )
       .toPromise();
@@ -79,5 +74,6 @@ export class InvoicePreviewComponent implements OnInit {
 
   SaveInvoice() {
     this.helpers.setItemToLocalStorage('invoice', this.invoice);
+    this.router.navigateByUrl('/invoice-template');
   }
 }

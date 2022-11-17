@@ -1,7 +1,7 @@
 <div class="modal-body">
   <form [formGroup]="invoiceSettingForm">
     <div class="mb-3 form-group">
-      <p class="pb-0 m-0 mr-5">Theme Name :</p>
+      <label class="pb-0 m-0 mb-3 mr-5">Theme Name :</label>
       <input type="text" class="form-control" formControlName="name" />
       <div
         class="invalid-feedback"
@@ -19,11 +19,22 @@
         </p>
       </div>
     </div>
-    <div formGroupName="styling">
-      <div class="mb-3">
-        <p class="pb-0 m-0 mr-5">background-color :</p>
-        <p-colorPicker formControlName="backgroundColor"></p-colorPicker>
-      </div>
+    <div class="form-group">
+      <label class="pb-0 m-0 mb-3 mr-5">Theme Size :</label>
+      <p-dropdown
+        formControlName="size"
+        class="w-100"
+        [options]="sizes"
+      ></p-dropdown>
+    </div>
+    <div>
+      <label class="pb-0 m-0 mr-5 mb-3">Theme Image :</label>
+      <app-image-upload
+        class="mb-5 d-block"
+        [imageSrc]="invoice?.file?.fileData"
+        (changed)="fillForm($event)"
+        data-type="portrait"
+      ></app-image-upload>
     </div>
   </form>
 </div>

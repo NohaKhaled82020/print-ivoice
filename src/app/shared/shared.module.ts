@@ -12,6 +12,8 @@ import { ReplaceKeyPipe } from './pipes/replace-key.pipe';
 import { InvoiceLineValue } from './pipes/invoiceLine-value.pipe';
 import { InvoiceSettingsComponent } from './components/invoice-settings/invoice-settings.component';
 import { EditorModule } from 'primeng/editor';
+import { DropdownModule } from 'primeng/dropdown';
+import { ImageUploadComponent } from './components/image-upload/image-upload.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { EditorModule } from 'primeng/editor';
     SafeHtmlPipe,
     InvoiceLineValue,
     InvoiceSettingsComponent,
+    ImageUploadComponent,
   ],
   imports: [
     CommonModule,
@@ -31,6 +34,7 @@ import { EditorModule } from 'primeng/editor';
     AngularDraggableModule,
     DragDropModule,
     EditorModule,
+    DropdownModule,
   ],
   exports: [
     CommonModule,
@@ -46,6 +50,8 @@ import { EditorModule } from 'primeng/editor';
     SafeHtmlPipe,
     InvoiceLineValue,
     InvoiceSettingsComponent,
+    ImageUploadComponent,
+    DropdownModule,
   ],
 })
 export class SharedModule {}

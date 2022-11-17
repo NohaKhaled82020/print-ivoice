@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -6,9 +7,13 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class HelpersService {
   themeBlocks$ = new BehaviorSubject<boolean>(false);
-  invoiceLayoutBlocks$ = new BehaviorSubject<any[]>([]);
+  invoiceUI$ = new BehaviorSubject<any[]>([]);
 
   constructor() {}
+
+  fillField(form: FormGroup, field: string, value: any): void {
+    form.controls[field].patchValue(value);
+  }
 
   setItemToLocalStorage(name: string, value: any): void {
     localStorage.setItem(name, JSON.stringify(value));

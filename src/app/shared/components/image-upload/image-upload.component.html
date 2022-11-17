@@ -1,0 +1,13 @@
+<div class="photo-img">
+  <div class="image-upload" [class.has-image]="userImg || imageSrc">
+    <input
+      type="file"
+      (change)="uploadImage($event)"
+      accept="image/png, image/jpeg"
+    />
+    <img [src]="userImg || imageSrc" alt="" />
+    <span class="icon">
+      <i class="fa fa-camera"></i>
+    </span>
+  </div>
+</div>

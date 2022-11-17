@@ -10,75 +10,85 @@ import { InvoiceFieldsComponent } from '../shared/components/invoice-fields/invo
 })
 export class InvoiceBuilderComponent implements OnInit {
   start = 4;
-  invoiceBlocks = [
-    {
-      id: `1`,
-      name: `block-1`,
-      selectedFields: ['{%CompanyName%}'],
-      styling: {
-        x: 20,
-        y: 24,
-        backgroundColor: '#ffffff',
-        color: '#000000',
+  invoice: any = {
+    id: 'theme-1',
+    name: 'theme-1',
+    size: 'A4',
+    invoiceBlocks: [
+      {
+        id: `1`,
+        name: `block-1`,
+        selectedFields: ['{%CompanyName%}'],
+        styling: {
+          x: 20,
+          y: 24,
+          backgroundColor: '#ffffff',
+          color: '#000000',
+        },
+        htmlContent: '<p>{%CompanyName%}</p>',
       },
-      htmlContent: '<p>{%CompanyName%}</p>',
-    },
-    {
-      id: `2`,
-      name: `block-2`,
-      selectedFields: ['{%CompanyName%}'],
-      styling: {
-        x: 580,
-        y: 24,
-        backgroundColor: '#ffffff',
-        color: '#000000',
+      {
+        id: `2`,
+        name: `block-2`,
+        selectedFields: ['{%CompanyName%}'],
+        styling: {
+          x: 580,
+          y: 24,
+          backgroundColor: '#ffffff',
+          color: '#000000',
+        },
+        htmlContent: '<p>{%CompanyName%}</p>',
       },
-      htmlContent: '<p>{%CompanyName%}</p>',
-    },
-    {
-      id: `3`,
-      name: `block-3`,
-      selectedFields: ['{%CompanyName%}'],
-      styling: {
-        x: 20,
-        y: 150,
-        backgroundColor: '#ffffff',
-        color: '#000000',
+      {
+        id: `3`,
+        name: `block-3`,
+        selectedFields: ['{%CompanyName%}'],
+        styling: {
+          x: 20,
+          y: 150,
+          backgroundColor: '#ffffff',
+          color: '#000000',
+        },
+        htmlContent: '<p>{%CompanyName%}</p>',
       },
-      htmlContent: '<p>{%CompanyName%}</p>',
-    },
-    {
-      id: `4`,
-      name: `block-4`,
-      selectedFields: ['{%CompanyName%}'],
-      styling: {
-        x: 580,
-        y: 150,
-        backgroundColor: '#ffffff',
-        color: '#000000',
+      {
+        id: `4`,
+        name: `block-4`,
+        selectedFields: ['{%CompanyName%}'],
+        styling: {
+          x: 580,
+          y: 150,
+          backgroundColor: '#ffffff',
+          color: '#000000',
+        },
+        htmlContent: '<p>{%CompanyName%}</p>',
       },
-      htmlContent: '<p>{%CompanyName%}</p>',
-    },
-    {
-      id: `table`,
-      name: `table-test`,
-      selectedFields: ['{%ItemName%}', '{%ItemCode%}', '{%ItemUnit%}'],
-      styling: {
-        x: 225,
-        y: 346,
-        backgroundColor: '#ffffff',
-        color: '#000000',
+      {
+        id: `table`,
+        name: `table-test`,
+        selectedFields: ['{%ItemName%}', '{%ItemCode%}', '{%ItemUnit%}'],
+        styling: {
+          x: 225,
+          y: 346,
+          backgroundColor: '#ffffff',
+          color: '#000000',
+        },
+        htmlContent:
+          '<p>{%ItemName%}</p><p>{%ItemCode%}</p><p>{%ItemUnit%}</p>',
       },
-      htmlContent: '<p>{%ItemName%}</p><p>{%ItemCode%}</p><p>{%ItemUnit%}</p>',
-    },
-  ];
+    ],
+  };
+
   constructor(public helpers: HelpersService, private modalService: NgbModal) {
     // check if invoice found in local storage same for api
     if (this.helpers.getItemFromLocalStorage('invoice')) {
-      this.invoiceBlocks =
-        this.helpers.getItemFromLocalStorage('invoice').invoiceBlocks;
+      this.invoice = {};
+      this.invoice = {
+        ...this.invoice,
+        ...this.helpers.getItemFromLocalStorage('invoice'),
+      };
     }
-    this.helpers.invoiceLayoutBlocks$.next(this.invoiceBlocks);
+    this.helpers.invoiceUI$.next(this.invoice);
   }
 
   ngOnInit(): void {}
@@ -97,8 +107,8 @@ export class InvoiceBuilderComponent implements OnInit {
       },
       htmlContent: '<p>{%PhoneNumber%}</p>',
     };
-    this.invoiceBlocks.push(item);
-    this.helpers.invoiceLayoutBlocks$.next(this.invoiceBlocks);
+    this.invoice.invoiceBlocks.push(item);
+    this.helpers.invoiceUI$.next(this.invoice);
     const modalRef = this.modalService.open(InvoiceFieldsComponent, {
       windowClass: 'info-popup',
     });
@@ -106,8 +116,8 @@ export class InvoiceBuilderComponent implements OnInit {
   }
 
   removeBlock(block: any) {
-    let index = this.invoiceBlocks.indexOf(block);
-    this.invoiceBlocks.splice(index, 1);
-    this.helpers.invoiceLayoutBlocks$.next(this.invoiceBlocks);
+    let index = this.invoice.invoiceBlocks.indexOf(block);
+    this.invoice.invoiceBlocks.splice(index, 1);
+    this.helpers.invoiceUI$.next(this.invoice.invoiceBlocks);
   }
 }

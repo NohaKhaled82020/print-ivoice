@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { tap } from 'rxjs';
 import { HelpersService } from 'src/app/shared/services/helpers.service';
 
 @Component({
@@ -35,10 +36,12 @@ export class InvoiceTemplateComponent implements OnInit {
       },
     ],
   };
-  invoiceTemplate!: any;
+  invoice!: any;
   constructor(private helpers: HelpersService) {}
 
   ngOnInit(): void {
-    this.invoiceTemplate = this.helpers.getItemFromLocalStorage('invoice');
+    this.helpers.invoiceUI$
+      .pipe(tap((res) => (this.invoice = res)))
+      .toPromise();
   }
 }
