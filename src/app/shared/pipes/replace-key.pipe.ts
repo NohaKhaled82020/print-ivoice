@@ -13,7 +13,7 @@ export class ReplaceKeyPipe implements PipeTransform {
           ? this.arr[i].replace(/{|}/g, '')
           : invoiceData
           ? invoiceData[this.arr[i]]
-          : this.arr[i];
+          : `{%${this.arr[i]}%}`;
       }
       return this.arr.join('');
     }

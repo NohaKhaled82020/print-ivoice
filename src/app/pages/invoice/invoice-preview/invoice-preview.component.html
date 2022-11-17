@@ -34,6 +34,7 @@
         >
           <ng-container *ngIf="item.id !== 'table'">
             <div
+              class="w-100"
               [innerHtml]="
                 invoice.invoiceBlocks[i].htmlContent | replaceKey | safeHtml
               "

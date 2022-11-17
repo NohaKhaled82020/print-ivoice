@@ -9,14 +9,14 @@
       {{ field }}
     </p>
   </div>
-  <div class="editor w-100">
-    <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
-    <ngx-editor
-      [editor]="editor"
+  <div class="w-100">
+    <p-editor
+      [modules]="modules"
       [(ngModel)]="htmlContent"
-      (ngModelChange)="changeInEditor($event)"
+      [style]="{ height: '500px' }"
+      (onTextChange)="changeInEditor($event)"
     >
-    </ngx-editor>
+    </p-editor>
   </div>
 </div>
 

@@ -5,13 +5,13 @@ import { InvoiceStylingComponent } from './components/invoice-styling/invoice-st
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ColorPickerModule } from 'primeng/colorpicker';
-import { NgxEditorModule } from 'ngx-editor';
 import { AngularDraggableModule } from 'ngx-draggable-resize';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 import { ReplaceKeyPipe } from './pipes/replace-key.pipe';
 import { InvoiceLineValue } from './pipes/invoiceLine-value.pipe';
 import { InvoiceSettingsComponent } from './components/invoice-settings/invoice-settings.component';
+import { EditorModule } from 'primeng/editor';
 
 @NgModule({
   declarations: [
@@ -27,10 +27,10 @@ import { InvoiceSettingsComponent } from './components/invoice-settings/invoice-
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    NgxEditorModule,
     ColorPickerModule,
     AngularDraggableModule,
     DragDropModule,
+    EditorModule,
   ],
   exports: [
     CommonModule,

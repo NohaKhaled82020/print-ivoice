@@ -3,9 +3,12 @@
   padding: 20px 0;
   background-color: #bbb;
   img {
-    width: 300px;
+    width: 100%;
     height: auto;
     object-fit: cover;
+  }
+  p:last-of-type {
+    margin-bottom: 0;
   }
 }
 .invoice__wrapper {
